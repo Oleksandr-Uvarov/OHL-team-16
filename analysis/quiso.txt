@@ -1,2 +1,0 @@
-feature engineering:
-       defined by the frequency of orders of a particular item (retrieved before grouping them by)
