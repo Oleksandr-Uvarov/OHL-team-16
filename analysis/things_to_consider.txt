@@ -1,0 +1,3 @@
+sporting:
+        feature engineering:
+            based on a given match, get the number of last wins in a row
