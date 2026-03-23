@@ -1,0 +1,6 @@
+## Opponent
+Divide opponents into strength categories
+## Timing
+Day of the week, holidays, time of day, ...
+## Recent team performance
+Percentage of wins, goals for and against, ...
