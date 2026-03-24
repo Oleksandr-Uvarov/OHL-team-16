@@ -1,0 +1,2 @@
+try to use interest of google trends not only for the day of the match
+but the interest before the match as well

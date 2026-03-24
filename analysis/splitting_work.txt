@@ -1,0 +1,3 @@
+time:
+    match_date
+    kickoff_time
