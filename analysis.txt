@@ -1,0 +1,1 @@
+last results against a given team have negative correlation with number of tickets sold
