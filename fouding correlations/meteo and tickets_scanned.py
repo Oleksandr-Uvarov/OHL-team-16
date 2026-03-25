@@ -27,7 +27,6 @@ plt.ylabel("Nombre de spectateurs")
 plt.title("Pluie vs spectateurs")
 plt.show()
 
-
 #Avec / sans pluie (bar chart)
 
 df["rain"] = (df["weather_rain_mm"] > 0).astype(int)

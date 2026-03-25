@@ -1,0 +1,72 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+articles = pd.read_csv("data/gold_belga_press_articles.csv", on_bad_lines='skip')
+
+articles = articles.dropna(subset=["title", "lead"])
+articles = articles.drop_duplicates()
+
+articles["text"] = articles["title"] + " " + articles["lead"]
+
+
+positive_words = ["win", "victory", "success", "good", "great", "excellent", "strong", "growth"]
+negative_words = ["loss", "fail", "bad", "crisis", "problem", "injury", "decline", "poor"]
+
+
+def get_sentiment(text):
+    text = text.lower()
+    
+    pos = sum(text.count(word) for word in positive_words)
+    neg = sum(text.count(word) for word in negative_words)
+    
+    if pos > neg:
+        return "positive"
+    elif neg > pos:
+        return "negative"
+    else:
+        return "neutral"
+
+articles["sentiment"] = articles["text"].apply(get_sentiment)
+
+
+result = articles["sentiment"].value_counts()
+
+print(result)
+
+
+order = ["positive", "neutral", "negative"]
+result = result.reindex(order)
+
+colors = ["#2E86DE", "#E74C3C", "#27AE60"]  
+
+plt.figure(figsize=(10,6))
+
+bars = plt.bar(result.index, result.values, color=colors, edgecolor='black')
+
+
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval + 200,
+             int(yval),
+             ha='center', fontsize=11, fontweight='bold')
+
+
+baseline = result.mean()
+plt.axhline(y=baseline, color="#8E6E53", linestyle='--', linewidth=1.5)
+
+plt.text(2, baseline + 300,
+         f"Baseline = {int(baseline)}",
+         ha='right', fontsize=10, color="#8E6E53")
+
+
+plt.title("Sentiment Analysis of Articles", fontsize=14, fontweight='bold')
+plt.xlabel("Sentiment")
+plt.ylabel("Number of Articles")
+
+
+plt.grid(axis='y', linestyle='--', alpha=0.3)
+
+plt.xticks(rotation=0)
+
+plt.tight_layout()
+plt.show()
