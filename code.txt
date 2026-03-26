@@ -1,0 +1,14 @@
+data["month"] = data['date'].dt.month
+data['month_cos'] = np.cos(2 * np.pi * data['month'] / 12)
+
+avg_tickets_scanned = train_data.groupby("away_team_code")["tickets_scanned"].mean().to_frame().rename(columns={"tickets_scanned": "avg_tickets_scanned"})
+
+
+seasonpass_holders
+
+article_count = (match_articles
+                 .groupby("match_id")["match_id"]
+                 .value_counts()
+                 .to_frame()
+                 .reset_index()
+                 .rename(columns={"count": "article_count"}))
